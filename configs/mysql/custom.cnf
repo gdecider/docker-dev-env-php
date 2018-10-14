@@ -1,0 +1,31 @@
+[mysqld]
+
+sql_mode = ''
+default-time-zone='+03:00'
+
+innodb_data_file_path = ibdata1:10M:autoextend
+#innodb_buffer_pool_size = 384M
+#key_buffer = 256M
+#thread_cache_size = 8
+#max_connections = 400
+#innodb_lock_wait_timeout = 100
+
+query_cache_size=0
+query_cache_type=0
+query_cache_limit=1M
+
+tmp_table_size=128M
+max_heap_table_size=128M
+skip-name-resolve=1
+
+innodb_log_file_size=256M
+innodb_log_buffer_size=4M
+#innodb_thread_concurrency=8
+#innodb_flush_method=O_DIRECT
+
+
+innodb_buffer_pool_size=1024M
+innodb_flush_log_at_trx_commit = 2
+max_allowed_packet = 1024M
+open_files_limit = 8192
+table_open_cache = 2048
