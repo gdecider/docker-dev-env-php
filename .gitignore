@@ -1,0 +1,5 @@
+projects/*
+!projects/html
+!projects/local.docker-test.ru
+databases/*
+!databases/.gitkeep

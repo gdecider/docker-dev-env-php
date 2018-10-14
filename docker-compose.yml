@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  
+  php-apache:
+    build: ./dockerfiles/php
+    restart: always
+    ports:
+      - 80:80
+    depends_on:
+      - mysql
+    volumes:
+      # configs
+      - ./configs/apache2:/etc/apache2
+      - ./configs/php:/usr/local/etc/php
+      # projects
+      - ./projects:/var/www
+
+  mysql:
+    build: ./dockerfiles/mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 3306:3306
+    volumes:
+      - ./configs/mysql:/etc/mysql/conf.d
+      - ./databases:/var/lib/mysql
+    
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    links:
+      - mysql:db
+            
