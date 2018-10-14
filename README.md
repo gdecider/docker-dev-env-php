@@ -104,6 +104,46 @@ composer () {
 * Для запуска выполнить ```docker-compose up --build```
 * Для остановки ```Ctrl+C```
 
+## Резервное копирование и восстановление БД
+
+* Запустить окружение
+```
+docker-compose up --build
+```
+* Узнать имя контейнера с БД
+```
+docker ps
+```
+* Поместить файлы бэкапа в папку 
+```
+./databases_backups
+```
+* Войти в запущенный контейнер
+```
+docker exec -ti <container_name> bash
+```
+
+### Создать дамп
+
+* Всех БД
+```
+mysqldump --all-databases -uroot -proot > /backups/all-databases.sql
+```
+* Конкретной БД
+```
+mysqldump -uroot -proot dbname > /backups/dbname.sql
+```
+
+### Развернуть дамп
+
+```
+mysql -uroot -proot dbname < /path/to/damp
+```
+или так
+```
+cat file1.sql file2.sql | mysql -uroot -proot dbname
+```
+
 ## Команды Docker
 
 * Убить все запущенные процессы

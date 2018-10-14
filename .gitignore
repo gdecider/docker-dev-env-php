@@ -3,3 +3,5 @@ projects/*
 !projects/local.docker-test.ru
 databases/*
 !databases/.gitkeep
+databases_backups/*
+!databases_backups/.gitkeep

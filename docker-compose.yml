@@ -30,6 +30,7 @@ services:
     volumes:
       - ./configs/mysql:/etc/mysql/conf.d
       - ./databases:/var/lib/mysql
+      - ./databases_backups:/backups
     
   adminer:
     image: adminer
