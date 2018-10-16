@@ -6,8 +6,8 @@ services:
     build: ./dockerfiles/php
     restart: always
     environment:
-      APACHE_RUN_USER: www-data
-      APACHE_RUN_GROUP: www-data
+      APACHE_RUN_USER: www
+      APACHE_RUN_GROUP: www
     ports:
       - 80:80
     depends_on:

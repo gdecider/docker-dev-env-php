@@ -11,4 +11,6 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd \
     && docker-php-ext-install -j$(nproc) opcache \
-    && docker-php-ext-configure opcache --enable-opcache \    
+    && docker-php-ext-configure opcache --enable-opcache
+RUN groupadd -g 1000 -r www \
+    && useradd -u 1000 -g 1000 -r www
