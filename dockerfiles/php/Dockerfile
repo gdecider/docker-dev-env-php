@@ -14,3 +14,4 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure opcache --enable-opcache
 RUN groupadd -g 1000 -r www \
     && useradd -u 1000 -g 1000 -r www
+RUN mkdir -p /tmp/phpsessions && chown -R www:www /tmp/phpsessions
