@@ -15,3 +15,4 @@ RUN apt-get update && apt-get install -y \
 RUN groupadd -g 1000 -r www \
     && useradd -u 1000 -g 1000 -r www
 RUN mkdir -p /tmp/phpsessions && chown -R www:www /tmp/phpsessions
+RUN a2enmod rewrite
