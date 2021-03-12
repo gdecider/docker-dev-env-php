@@ -9,11 +9,20 @@ RUN apt-get update && apt-get install -y \
         libjpeg62-turbo-dev \
         libmcrypt-dev \
         libpng-dev \
+        libzip-dev \
+        zip \
+        git \
     && docker-php-ext-install -j$(nproc) mysqli pdo_mysql \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd \
     && docker-php-ext-install -j$(nproc) opcache \
     && docker-php-ext-configure opcache --enable-opcache
+    && docker-php-ext-configure zip --with-libzip \
+    && docker-php-ext-install zip  
+RUN pecl install mailparse \
+    && docker-php-ext-enable mailparse
+RUN pecl install -f runkit7-alpha \
+    && docker-php-ext-enable runkit7
 RUN groupadd -g 1000 -r www \
     && useradd -u 1000 -g 1000 -r www
 RUN mkdir -p /tmp/phpsessions && chown -R www:www /tmp/phpsessions

@@ -5,3 +5,4 @@ databases/*
 !databases/.gitkeep
 databases_backups/*
 !databases_backups/.gitkeep
+/logs/*

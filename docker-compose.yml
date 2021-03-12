@@ -3,8 +3,9 @@ version: '3'
 services:
   
   php-apache:
-    build: ./dockerfiles/php
-    restart: always
+    container_name: php7_php-apache
+    build: ./dockerfiles/php7.2
+    restart: on-failure
     environment:
       APACHE_RUN_USER: www
       APACHE_RUN_GROUP: www
@@ -16,13 +17,18 @@ services:
       # configs
       - ./configs/apache2:/etc/apache2
       - ./configs/php:/usr/local/etc/php
+      # xdebug profiler
+      - ./xdebug-profiler:/tmp/xdebug
+      # logs
+      - ./logs/apache2:/var/log/apache2
       # projects
-      - ./projects:/var/www
+      - ~/projects:/var/www
 
   mysql:
+    container_name: php7_mysql
     build: ./dockerfiles/mysql
     command: --default-authentication-plugin=mysql_native_password
-    restart: always
+    restart: on-failure
     environment:
       MYSQL_ROOT_PASSWORD: root
     ports:
@@ -33,8 +39,9 @@ services:
       - ./databases_backups:/backups
     
   adminer:
+    container_name: php7_adminer
     image: adminer
-    restart: always
+    restart: on-failure
     ports:
       - 8080:8080
     links:
